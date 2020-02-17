@@ -1,4 +1,5 @@
-
+const router = require("express").Router();
+const db = require("../models");
 
 db.User.create({ name: "Nick Koch "})
 .then(dbUser => {
@@ -8,10 +9,10 @@ db.User.create({ name: "Nick Koch "})
     console.log(message);
 });
 
-app.get("/workouts", (req,res) => {
+app.get("/api/workouts", (req,res) => {
   db.Workout.find({})
-  .then(dbWorkout => {
-      res.json(dbWorkout);
+  .then(data => {
+      res.json(data);
   })
   .catch(err => {
       res.json(err);
