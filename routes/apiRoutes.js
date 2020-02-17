@@ -19,7 +19,18 @@ router.get("/api/workouts", (req,res) => {
   });
 });
 
-// app.get("/user", (req,res) => {
+router.post("/api/workouts", (req,res) => {
+    db.Workout.create(req.body)
+    .then(data => {
+        res.json(data);
+    })
+    .catch(err => {
+        res.json(err);
+    });
+});
+
+
+// app.get("/user", (req,r, es) => {
 //   db.User.find({})
 //   .then(dbUser => {
 //       res.json(dbUser);
