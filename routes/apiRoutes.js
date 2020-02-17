@@ -29,6 +29,25 @@ router.post("/api/workouts", (req,res) => {
     });
 });
 
+router.put("/api/workouts/:id", (req,res) => {
+    db.Workout.update({ _id: mongojs.ObjectId(req.params.id)})
+    .then(data => {
+        res.json(data);
+    })
+    .catch(err => {
+        res.json(err);
+    });
+});
+
+router.get("/api/workouts/range", (req,res) => {
+    db.Workout.find({})
+    .then(data => {
+        res.json(data);
+    })
+    .catch(err => {
+        res.json(err);
+    });
+});
 
 // app.get("/user", (req,r, es) => {
 //   db.User.find({})
@@ -45,17 +64,6 @@ router.post("/api/workouts", (req,res) => {
 //   .then(({ _id }) => db.User.findOneAndUpdate({}, { $push: { workouts: _id } }, { new: true }))
 //   .then(dbUser => {
 //       res.json(dbUser);
-//   })
-//   .catch(err => {
-//       res.json(err);
-//   });
-// });
-
-// app.get("/populateduser", (req, res) => {
-//   db.User.find({})
-//   .populate("workouts")
-//   .then(users => {
-//       res.json(users);
 //   })
 //   .catch(err => {
 //       res.json(err);
