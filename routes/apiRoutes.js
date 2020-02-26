@@ -20,7 +20,7 @@ router.get("/api/workouts", (req,res) => {
 });
 
 router.post("/api/workouts", (req,res) => {
-    db.Workout.create(req.body)
+    db.Workout.create({})
     .then(data => {
         res.json(data);
     })
@@ -30,7 +30,9 @@ router.post("/api/workouts", (req,res) => {
 });
 
 router.put("/api/workouts/:id", (req,res) => {
-    db.Workout.findByIdAndUpdate({ _id: req.params.id })
+    db.Workout.findByIdAndUpdate(req.params.id, 
+        {$push: {exercises: req.body}}
+        )
     .then(data => {
         res.json(data);
     })
