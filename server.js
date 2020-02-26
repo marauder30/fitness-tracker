@@ -28,11 +28,11 @@ if (process.env.JAWSDB_URL) {
     });
 }
 
-mongoose.connect(mongoUri, { 
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-});
+// mongoose.connect(mongoUri, { 
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//     useFindAndModify: false
+// });
 
 
 app.use(require("./routes/apiRoutes.js"));
