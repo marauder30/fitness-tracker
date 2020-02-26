@@ -15,11 +15,25 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
+const mongoUri = process.env.MONGODB_URI || "mongodb://localhost/workoutdb";
+
 if (process.env.JAWSDB_URL) {
     connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
-    connection = mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populatedb", { useNewUrlParser: true});
+    connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: "SQL$tchamps8080",
+        database: "workoutdb"
+    });
 }
+
+mongoose.connect(mongoUri, { 
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+});
+
 
 app.use(require("./routes/apiRoutes.js"));
 app.use(require("./routes/htmlRoutes.js"));
